@@ -24,7 +24,7 @@ const addNewUser = async (req, res) => {
 
         const isPresent = await UserModel.findOne({ email });
         if (isPresent) {
-            return res.status(409).send({
+            return res.status(201).send({
                 "message": `User with email : ${email} already exists`,
                 "status": 409,
                 "data": null
@@ -61,6 +61,74 @@ const addNewUser = async (req, res) => {
 
 const getUsersInfo = async (req, res) => {
 
+ const { userId } = req.query;
+    let { page, limit } = req.query;
+    let { search } = req.query;
+
+    if (!page) page = 1;
+    if (!limit) limit = 6;
+
+    if (userId) {
+
+        try {
+
+            const user = await checkUserByUserId(userId);
+            if (!user) {
+                return res.status(404).send(userNotFoundResponse());
+            }
+            return res.status(200).send({
+                "message": "User found",
+                "status": 200,
+                "data": user
+            })
+        } catch (error) {
+            return res.status(500).send(databaseErrorResponse(error.message));
+        }
+    }
+
+    if (search) {
+
+        try {
+
+            const user = await UserModel.find({
+                $or: [
+                    { firstName: { $regex: search, $options: 'i' } }, // Case-insensitive search
+                    { lastName: { $regex: search, $options: 'i' } },
+                ],
+            }).limit(limit).skip((page - 1) * limit);
+
+            if (!user) {
+                return res.status(404).send(userNotFoundResponse());
+            }
+
+            return res.status(200).send({
+                "message": "User found",
+                "status": 200,
+                "data": user
+            })
+        } catch (error) {
+            return res.status(500).send(databaseErrorResponse(error.message));
+        }
+    }
+
+    try {
+
+        const totaluser = await UserModel.find({}).count();
+
+        res.append('X-Total-Count', totaluser);
+        res.append('Access-Control-Expose-Headers', 'X-Total-Count');
+
+        const users = await UserModel.find({}).limit(limit).skip((page - 1) * limit);
+
+        return res.status(200).send({
+            "message": "All users",
+            "status": 200,
+            "data": users
+        });
+
+    } catch (error) {
+        return res.status(500).send(databaseErrorResponse(error.message));
+    }
    
 }
 
