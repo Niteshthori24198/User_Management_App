@@ -8,7 +8,7 @@ function AllRouters() {
     return (
         <>
             <Routes>
-                <Route path='/' element={<h2>Welcome to Dashboard</h2>} />
+                <Route path='/' element={<Home />} />
                 <Route path='/Home' element={<Home />} />
                 <Route path='/user' element={<User />} />
                 <Route path='/add-user' element={<AddUser />} />

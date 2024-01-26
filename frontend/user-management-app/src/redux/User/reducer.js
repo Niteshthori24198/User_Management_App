@@ -31,7 +31,6 @@ export const reducer = (state = initialState, { type, payload }) => {
         }
 
         case GET_USER: {
-            console.log("data geting", payload)
             return {
                 ...state,
                 isLoading: false,

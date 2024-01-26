@@ -14,8 +14,8 @@ import { NavLink } from 'react-router-dom';
 
 const pages = [
     {
-        name:"Add User",
-        link:'/add-user'
+        name: "Add User",
+        link: '/add-user'
     },
     {
         name: 'View User',
@@ -24,11 +24,12 @@ const pages = [
 ]
 
 function Navbar() {
-
     const [anchorElNav, setAnchorElNav] = React.useState(null);
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
+
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -61,7 +62,7 @@ function Navbar() {
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.15rem',
+                            letterSpacing: '.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
@@ -111,7 +112,7 @@ function Navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    
+
                     <Typography
                         variant="h5"
                         noWrap
@@ -123,12 +124,12 @@ function Navbar() {
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.2rem',
+                            letterSpacing: '.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                       User Dashboard
+                        User Dashboard
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -148,11 +149,12 @@ function Navbar() {
                         ))}
                     </Box>
 
-
                 </Toolbar>
             </Container>
-            
+
         </AppBar>
     );
 }
+
+
 export default Navbar;

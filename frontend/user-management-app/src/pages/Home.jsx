@@ -2,8 +2,8 @@ import React from 'react'
 
 function Home() {
   return (
-    <div style={{ display:"grid", placeItems: "center" }}>
-      <img src="https://appcoup.com/assets/img/foodie/tableorder-full.gif" alt="User Management" width={"100%"} />
+    <div style={{ display:"grid", placeItems: "center", margin:"15px auto" }}>
+      <img src="https://informationsecurityasia.com/wp-content/uploads/2022/03/What-Is-User-Management.jpg" alt="User Management" width={"100%"} />
     </div>
   )
 }

@@ -111,7 +111,6 @@ export const deleteUser = (id) => (dispatch) => {
         url: `${process.env.REACT_APP_BASEURL}/delete/${id}`
     }).then((res) => {
         dispatch(deleteUserAction({ payload: id }));
-        alert(res.data.message);
     }).catch((error) => {
         dispatch(userErrorAction(error));
     })

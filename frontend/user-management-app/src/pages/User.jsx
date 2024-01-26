@@ -20,6 +20,7 @@ export default function User() {
   const dispatch = useDispatch();
 
   const users = (useSelector((state) => state.user.users)) || [];
+  console.log("users", users);
   const isLoading = useSelector((state) => state.user.isLoading);
   const totalCount = useSelector((state) => state.user.totalCount);
 
@@ -33,7 +34,7 @@ export default function User() {
 
     setsearchParams(params);
 
-  }, [page, limit, searchInput]);
+  }, [page, limit, searchInput, isupdated]);
 
 
   React.useEffect(() => {
@@ -59,6 +60,7 @@ export default function User() {
   const handleDelete = (userId) => {
     dispatch(deleteUser(userId));
     setisupdated(!isupdated);
+    window.location.reload();
   }
 
 
@@ -80,7 +82,7 @@ export default function User() {
             fullWidth
             placeholder='Search User'
             value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
+            onChange={(e) => { setSearchInput(e.target.value); setisupdated(!isupdated) }}
             autoFocus
           />
         </Box>
