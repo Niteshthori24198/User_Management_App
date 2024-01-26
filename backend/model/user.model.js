@@ -19,6 +19,10 @@ const userSchema = mongoose.Schema({
     lastName: {
         type: String
     },
+    contact: {
+        type: Number,
+        required: true
+    },
     departmentName: {
         type: String,
         required: true

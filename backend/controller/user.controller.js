@@ -10,9 +10,9 @@ const { UserModel } = require('../model/user.model');
  */
 const addNewUser = async (req, res) => {
 
-    const { email, firstName, lastName, departmentName } = req.body;
+    const { email, firstName, lastName, departmentName, contact } = req.body;
 
-    if (!email || !firstName || !lastName || !departmentName) {
+    if (!email || !firstName || !lastName || !departmentName || !contact) {
         return res.status(400).send({
             "message": "All fields are required",
             "status": 400,
@@ -27,7 +27,7 @@ const addNewUser = async (req, res) => {
             return res.status(201).send({
                 "message": `User with email : ${email} already exists`,
                 "status": 409,
-                "data": null
+                "data": isPresent
             })
         }
 
@@ -61,7 +61,7 @@ const addNewUser = async (req, res) => {
 
 const getUsersInfo = async (req, res) => {
 
- const { userId } = req.query;
+    const { userId } = req.query;
     let { page, limit } = req.query;
     let { search } = req.query;
 
@@ -115,6 +115,7 @@ const getUsersInfo = async (req, res) => {
 
         const totaluser = await UserModel.find({}).count();
 
+        // Pagination logic
         res.append('X-Total-Count', totaluser);
         res.append('Access-Control-Expose-Headers', 'X-Total-Count');
 
@@ -129,7 +130,7 @@ const getUsersInfo = async (req, res) => {
     } catch (error) {
         return res.status(500).send(databaseErrorResponse(error.message));
     }
-   
+
 }
 
 
@@ -174,6 +175,7 @@ const updateUserInfo = async (req, res) => {
 }
 
 
+
 /**
  * Asynchronously removes a user based on the provided userId parameter.
  *
@@ -209,6 +211,7 @@ const removeUser = async (req, res) => {
         return res.status(500).send(databaseErrorResponse(error.message));
     }
 }
+
 
 
 /**

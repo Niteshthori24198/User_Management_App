@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
     })
 })
 
+// all user routes will be redirected from here
 
 app.use("/users", userRouter);
 
@@ -26,7 +27,6 @@ app.all("*", (req, res) => {
         "status": 404
     })
 })
-
 
 
 app.listen(process.env.PORT, async () => {
