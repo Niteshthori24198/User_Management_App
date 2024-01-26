@@ -101,6 +101,12 @@ const getUsersInfo = async (req, res) => {
                 return res.status(404).send(userNotFoundResponse());
             }
 
+            const totaluser = await UserModel.find({}).count();
+
+            // Pagination logic
+            res.append('X-Total-Count', totaluser);
+            res.append('Access-Control-Expose-Headers', 'X-Total-Count');
+
             return res.status(200).send({
                 "message": "User found",
                 "status": 200,
