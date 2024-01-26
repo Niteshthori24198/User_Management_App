@@ -24,12 +24,11 @@ const pages = [
 ]
 
 function Navbar() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
 
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -67,7 +66,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        Dashboard
+                        User Dashboard
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -129,7 +128,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        Dashboard
+                       User Dashboard
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
