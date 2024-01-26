@@ -4,7 +4,7 @@ import UserCard from './UserCard';
 
 function ShowUser({ totalCount, users, limit, page, handlePageChange, handleDelete }) {
 
-    if (!totalCount) {
+    if (!totalCount || users.length == 0) {
         return <h2 style={{ textAlign: 'center' }}>No user Present 🙌</h2>
     }
 

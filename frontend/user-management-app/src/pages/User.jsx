@@ -20,7 +20,6 @@ export default function User() {
   const dispatch = useDispatch();
 
   const users = (useSelector((state) => state.user.users)) || [];
-  console.log("users", users);
   const isLoading = useSelector((state) => state.user.isLoading);
   const totalCount = useSelector((state) => state.user.totalCount);
 
